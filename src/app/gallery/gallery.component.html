@@ -1,6 +1,6 @@
 <mat-grid-list gutterSize="5" [cols]="breakpoint" rowHeight="3:2" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let image of images">
-    <app-card [img]="image.image_url" [title]="image.name"></app-card>
+  <mat-grid-tile *ngFor="let image of images; let i = index">
+    <app-card [img]="image.image_url" [title]="image.name" [index]="i" (delete)="deleteImage($event)" (edit)="editImage($event)"></app-card>
   </mat-grid-tile>
 </mat-grid-list>
 

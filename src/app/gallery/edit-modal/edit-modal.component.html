@@ -1,0 +1,31 @@
+<h6 mat-dialog-title>Edit Image</h6>
+<div mat-dialog-content *ngIf="!imageCropped">
+  <image-cropper
+    imageBase64="{{imageToEdit}}"
+    outputType="both"
+  ></image-cropper>
+</div>
+<div mat-dialog-content *ngIf="imageCropped">
+  <mat-grid-list cols="2" rowHeight="200px" gutterSize="20px">
+    <mat-grid-tile>
+      <div>
+        <h6>Old Image</h6>
+        <img src="{{imageToEdit}}" alt="">
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <h6>New Image</h6>
+        <img src="{{croppedImage.base64}}" alt="">
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div mat-dialog-actions align="end" *ngIf="!imageCropped">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="cropImage()">Crop</button>
+</div>
+<div mat-dialog-actions align="end" *ngIf="imageCropped">
+  <button mat-button (click)="onNoClick()">No, I'd Keep The Original</button>
+  <button mat-button [mat-dialog-close]="croppedImage" cdkFocusInitial>Save</button>
+</div>

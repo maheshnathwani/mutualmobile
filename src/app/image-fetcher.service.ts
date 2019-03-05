@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-interface Image {
-  name: string;
-  image_url: string;
-}
+import {Image} from './Image';
+import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,5 +12,10 @@ export class ImageFetcherService {
 
   getImages(): Observable<Image[]> {
     return this.httpClient.get<Image[]>(this.url);
+  }
+  getImage(imageUrl: string): Observable<Blob> {
+    return this.httpClient
+      .get(imageUrl, { responseType: 'blob' })
+      .pipe(map((res: Blob) => res));
   }
 }
