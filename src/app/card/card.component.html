@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{title}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content (mouseover)="hovered=true" (mouseleave)="hovered=false" >
+    <img mat-card-image src="{{img}}" alt="{{title}}">
+    <div *ngIf="hovered" class="hovered">
+      <button mat-icon-button color="primary">
+        <mat-icon aria-label="Edit Image">create</mat-icon>
+      </button>
+      <button mat-icon-button color="warn">
+        <mat-icon aria-label="Delete Image">delete</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
